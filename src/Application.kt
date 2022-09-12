@@ -1,19 +1,17 @@
 package konstantin.bezzemelnyi
 
+import com.apurebase.kgraphql.GraphQL
 import io.ktor.application.*
-import io.ktor.http.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.netty.*
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+
+fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module(testing: Boolean = false) {
-    routing {
-        route("/hello", HttpMethod.Get) {
-            handle {
-                call.respondText("hello there")
-            }
-        }
+    install(GraphQL) {
+        schema { schemaValue() }
+        playground = true
     }
 }
+
 
