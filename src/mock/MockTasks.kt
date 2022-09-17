@@ -1,13 +1,12 @@
 package konstantin.bezzemelnyi.mock
 
-import konstantin.bezzemelnyi.Task
-import konstantin.bezzemelnyi.model.Task.TaskBuilder
-import konstantin.bezzemelnyi.model.Task.TasksBuilder
+import konstantin.bezzemelnyi.Screen
+import konstantin.bezzemelnyi.model.Task.ScreensBuilder
 import konstantin.bezzemelnyi.model.UIContainer.UIContainer
 
-val mockTasks: ArrayList<Task> = TasksBuilder().apply {
+val mockScreens: ArrayList<Screen> = ScreensBuilder().apply {
     // 1. Question about the user existence reason
-    task {
+    screen {
         container {
             type {
                 UIContainer.Type.STACK
@@ -22,7 +21,7 @@ val mockTasks: ArrayList<Task> = TasksBuilder().apply {
         }
     }
     // 2. Question about personal life
-    task {
+    screen {
         container {
             type {
                 UIContainer.Type.STACK

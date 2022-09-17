@@ -1,22 +1,28 @@
 package konstantin.bezzemelnyi
 
 import com.apurebase.kgraphql.schema.dsl.SchemaBuilder
-import konstantin.bezzemelnyi.mock.mockTasks
+import io.ktor.http.*
+import konstantin.bezzemelnyi.database.IScreensRepo
+import konstantin.bezzemelnyi.database.IncorrectTaskID
+import konstantin.bezzemelnyi.database.ScreensRepo
 import konstantin.bezzemelnyi.model.UIComponent.UIComponent
 import konstantin.bezzemelnyi.model.UIComponent.UIComponentType
 import konstantin.bezzemelnyi.model.UIContainer.UIContainer
 
 fun SchemaBuilder.schemaValue() {
 
-    query("GetTasksAssigned") {
-        description = "Retrieve all the tasks that are assigned on the user."
+    val screensRepo: IScreensRepo = ScreensRepo()
+
+    query("GetScreens") {
+        description = "Retrieve all the screens for the user."
         resolver { ->
-            mockTasks
+            screensRepo.getScreens()
         }
     }
 
     type<UIComponent> {}
 
+    type<IncorrectTaskID>()
     enum<UIComponentType>()
 
     enum<UIContainer.Direction> {}
